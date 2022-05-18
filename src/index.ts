@@ -1,53 +1,23 @@
-import { ClassTransFormer } from "./ClassTransFrom";
+import { Bubbling, EventBus, Unique } from "./Interview";
 
-class User {
-    id!: number;
-    firstName!: string;
-    lastName!: string;
-    age!: number;
+// let arr1 = [9,6,5,2,1,8,0,4]
+// Bubbling(arr1)
+// console.log(arr1);
 
-    getName() {
-        return this.firstName + ' ' + this.lastName;
-    }
+// let arr2 = [1,2,34,1,2,{a:1,b:2},{a: 1,b:2},{a:1,b:2},[1,2,3],[1,2,3],[1,2,3],'',[],{a:1,b:2}]
+// let newArr2 = Unique(arr2)
+// console.log(newArr2);
 
-    isAdult() {
-        return this.age > 36 && this.age < 60;
-    }
-}
-const userArray = [
-    {
-      "id": 1,
-      "firstName": "Johny",
-      "lastName": "Cage",
-      "age": 27
-    },
-    {
-      "id": 2,
-      "firstName": "Ismoil",
-      "lastName": "Somoni",
-      "age": 50
-    },
-    {
-      "id": 3,
-      "firstName": "Luke",
-      "lastName": "Dacascos",
-      "age": 12
-    }
-]
-const t1 = new ClassTransFormer()
-const realUsers = t1.plainToInstance(userArray,User)
-const realUsers1 = t1.plainToInstance(userArray[0],User)
+const obj3 = new EventBus()
+obj3.EMIT("say",()=>{
+  console.log('hello world');
+})
 
+obj3.ON("say")
+obj3.EMIT("hi",()=>{
+  console.log("hi");
+})
 
-class dog{
-  a=1
-  b=2
-  c="123"
-  d="412312"
-  e=false
-}
-console.log( t1.classToPlain(new dog()) )
-// console.log( realUsers[0].id )
-// console.log( realUsers[0].getName() )
-// console.log( realUsers1.id )
-// console.log( realUsers1.getName() )
+obj3.EMIT("niubi",(a:1)=>{
+  console.log(a);
+})
