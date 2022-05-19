@@ -2,7 +2,6 @@
  * @chelizichen 面试题
  */
 
-
 /**
  * @冒泡排序
  */
@@ -106,3 +105,27 @@ export class EventBus{
         delete this.cache[EventName]
     }
 }
+
+/**
+ * @Sleep 同步Sleep 函数
+ * @return void
+ */
+export function sleep(time:number){
+    let start:number = +( new Date() ) // 强制类型转换
+    let curr:number = start
+    while(true){
+        curr = +( new Date() )
+        if( (curr-start)>time ){
+            break
+        }
+    }
+}
+
+/**
+ * @reverse 翻转字符 
+ * @returns string
+ */
+export function reverse(s:string){
+    return s.split("").reverse().join("")
+}
+
