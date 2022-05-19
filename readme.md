@@ -59,5 +59,24 @@
     console.log( realUsers1.getName() )
 
 
-### 使用数组去重
+### 使用 @Get @Query
+    import { GET, Query } from "./Decorator";
+    class West{
+        @GET("www.baidu.com?id=1&&msg=awdasd")
+        testGet(@Query("id") query:any){
+            console.log('应该是baidu',arguments[arguments.length-1]);
+        }
+        @GET("www.baidu.com?id=1&&msg=awdasd")
+        testWithOutQuery(@Query() query:any){
+            console.log('应该是baidu',arguments[arguments.length-1]);
+        }
+    }
+
+
+    // 执行代码 不管类型了
+    const Wheal:any = new West()
+    const a1:any = Object.getOwnPropertyNames(West.prototype).slice(1)
+    for(let i =0;i<a1.length;i++){
+        Wheal[a1[i]]()
+    }
 

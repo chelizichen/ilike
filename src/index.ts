@@ -1,23 +1,39 @@
-import { GET, Query } from "./Decorator";
-import { Bubbling, EventBus, Unique } from "./Interview";
-class West{
-  @GET("www.baidu.com?id=1&&msg=awdasd")
-  testGet(@Query("id") query:any){
-    console.log('应该是baidu',arguments[arguments.length-1]);
-  }
-  @GET("www.baidu.com?id=1&&msg=awdasd")
-  testWithOutQuery(@Query() query:any){
-    console.log('应该是baidu',arguments[arguments.length-1]);
-  }
-}
+// import { GET, Query } from "./Decorator";
+// import { Bubbling, EventBus, Unique } from "./Interview";
+
+import { useState } from "./Hooks/useState";
 
 
-// 执行代码 不管类型了
-const Wheal:any = new West()
-const a1:any = Object.getOwnPropertyNames(West.prototype).slice(1)
-for(let i =0;i<a1.length;i++){
-  Wheal[a1[i]]()
-}
+
+    const [num,addNum] = useState<number>(0)
+    console.log('initState',num);
+    addNum(val=>val+1)
+    console.log('after add ',num);
+
+
+
+
+
+
+
+// class West{
+//   @GET("www.baidu.com?id=1&&msg=awdasd")
+//   testGet(@Query("id") query:any){
+//     console.log('应该是baidu',arguments[arguments.length-1]);
+//   }
+//   @GET("www.baidu.com?id=1&&msg=awdasd")
+//   testWithOutQuery(@Query() query:any){
+//     console.log('应该是baidu',arguments[arguments.length-1]);
+//   }
+// }
+
+
+// // 执行代码 不管类型了
+// const Wheal:any = new West()
+// const a1:any = Object.getOwnPropertyNames(West.prototype).slice(1)
+// for(let i =0;i<a1.length;i++){
+//   Wheal[a1[i]]()
+// }
 
 
 // let arr1 = [9,6,5,2,1,8,0,4]
