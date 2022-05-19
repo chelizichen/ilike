@@ -3,20 +3,21 @@ import { Bubbling, EventBus, Unique } from "./Interview";
 class West{
   @GET("www.baidu.com?id=1&&msg=awdasd")
   testGet(@Query("id") query:any){
-    console.log(query);
     console.log('应该是baidu',arguments[arguments.length-1]);
   }
   @GET("www.baidu.com?id=1&&msg=awdasd")
   testWithOutQuery(@Query() query:any){
-    console.log(query);
     console.log('应该是baidu',arguments[arguments.length-1]);
   }
 }
 
 
-const Wheal = new West()
-Wheal.testGet("")
-Wheal.testWithOutQuery("")
+// 执行代码 不管类型了
+const Wheal:any = new West()
+const a1:any = Object.getOwnPropertyNames(West.prototype).slice(1)
+for(let i =0;i<a1.length;i++){
+  Wheal[a1[i]]()
+}
 
 
 // let arr1 = [9,6,5,2,1,8,0,4]
