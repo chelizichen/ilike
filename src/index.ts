@@ -5,11 +5,11 @@ import { useState } from "./Hooks/useState";
 
 
 
-    const [num,addNum] = useState<number>(0)
-    console.log('initState',num);
-    addNum(val=>val+1)
-    console.log('after add ',num);
-
+let [num,addNum] = useState<number>(0)
+console.log('initState',num());
+addNum(val=>val+1)
+console.log('after add ',num());
+addNum(val=>val)
 
 
 
