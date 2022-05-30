@@ -1,13 +1,8 @@
 // import { GET, Query } from "./Decorator";
 // import { Bubbling, EventBus, Unique } from "./Interview";
 
-import { getK } from "./Interview";
 
 // import { useState } from "./Hooks/useState";
-const arr = [3,6,7,11]
-const k = getK(arr,8)
-console.log(k);
-
 
 // let [num,addNum] = useState<number>(0)
 // console.log('initState',num());

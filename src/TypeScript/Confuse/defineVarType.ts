@@ -1,13 +1,14 @@
 
 /**
  * @type getVarType
- * @returns varType
+ * @returns varType 
  */
 const Fruit = {
     apple:1,
     banana:2,
     strawberry:3
 }
+
 type newFruitPrice = {
     [K in keyof typeof Fruit]:{
         [K2 in K]:number
@@ -16,7 +17,7 @@ type newFruitPrice = {
 type anthorNewFruitPrice = {
     [K in keyof typeof Fruit]:number
 }
-export type getVarType<T,V> = {
+export type defineVarType<T,V> = {
     [K in keyof T]:{
         [K2 in K]:V
     }
@@ -31,7 +32,7 @@ const newTP:anthorNewFruitPrice ={
     banana:2,
     strawberry:3
 }
-const DiyNewTp:getVarType<typeof Fruit,number> = {
+const DiyNewTp:defineVarType<typeof Fruit,number> = {
     apple:1,
     banana:2,
     strawberry:3
