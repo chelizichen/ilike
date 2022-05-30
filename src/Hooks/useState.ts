@@ -6,7 +6,7 @@ export function render(){
     console.log('值不一样，渲染了');
 }
 
-type retUseState<T> = [()=>T,(fn:(oldVal:T)=>T)=>void]
+export type retUseState<T> =  [()=>T,(fn:(oldVal:T)=>T)=>void]
 export const useState = (function(){
     return function<T>(initState:T):retUseState<T>{
         let state = {
@@ -27,7 +27,6 @@ export const useState = (function(){
             let ret:retUseState<T> = [getState,setState]
             return ret
         }
-
         return setCurr()
     }
 }())

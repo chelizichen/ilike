@@ -1,39 +1,48 @@
 // import { GET, Query } from "./Decorator";
 // import { Bubbling, EventBus, Unique } from "./Interview";
 
-import { useState } from "./Hooks/useState";
+import { getK } from "./Interview";
+
+// import { useState } from "./Hooks/useState";
+const arr = [3,6,7,11]
+const k = getK(arr,8)
+console.log(k);
+
+
+// let [num,addNum] = useState<number>(0)
+// console.log('initState',num());
+// addNum(val=>val+1)
+// console.log('after add ',num());
+// addNum(val=>val)
 
 
 
-let [num,addNum] = useState<number>(0)
-console.log('initState',num());
-addNum(val=>val+1)
-console.log('after add ',num());
-addNum(val=>val)
-
-
-
-
-
-
-// class West{
-//   @GET("www.baidu.com?id=1&&msg=awdasd")
-//   testGet(@Query("id") query:any){
-//     console.log('应该是baidu',arguments[arguments.length-1]);
-//   }
-//   @GET("www.baidu.com?id=1&&msg=awdasd")
-//   testWithOutQuery(@Query() query:any){
-//     console.log('应该是baidu',arguments[arguments.length-1]);
-//   }
+// class WestController{
+//     constructor(private readonly WestService:WestService){}
+//     @GET("www.baidu.com?id=1&&msg=awdasd")
+//     testGet(@Query("msg") query:any){
+//         console.log(query);
+//         const { msg } = arguments[1]
+//         this.WestService.testGet(msg)
+//         console.log("arguments",arguments);
+//     }
+//     @GET("www.baidu.com?id=1&&msg=awdasd")
+//     testWithOutQuery(@Query() query:any){
+//         console.log("arguments",arguments);
+//     }
 // }
 
-
+// class WestService{
+//     testGet(msg:string){
+//         console.log("msg",msg);
+//     }
+// }
 // // 执行代码 不管类型了
-// const Wheal:any = new West()
-// const a1:any = Object.getOwnPropertyNames(West.prototype).slice(1)
+// const Wheal:any = new WestController(new WestService())
+// const a1:any = Object.getOwnPropertyNames(WestController.prototype).slice(1)
 // for(let i =0;i<a1.length;i++){
-//   Wheal[a1[i]]()
-// }
+//     Wheal[a1[i]]()
+// }   
 
 
 // let arr1 = [9,6,5,2,1,8,0,4]

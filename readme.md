@@ -73,7 +73,7 @@
     }
 
 
-    // 执行代码 不管类型了
+    // 执行代码
     const Wheal:any = new West()
     const a1:any = Object.getOwnPropertyNames(West.prototype).slice(1)
     for(let i =0;i<a1.length;i++){

@@ -129,3 +129,83 @@ export function reverse(s:string){
     return s.split("").reverse().join("")
 }
 
+/**
+ * @call 手写
+ * bind 返回一个被改变this 指向之后的函数
+ * @step1 先判断ctx 是不是一个obj 对象
+ * @step2 返回绑定后this 的函数
+ * 
+ */
+// @ts-ignore
+ Function.prototype._call = function(ctx:any,...args:any[]) {
+    const obj:Record<string,Function> = ctx === undefined?Window:Object(ctx)
+    obj.fn = this as Function
+    let ret:Function = obj.fn(args)
+    delete obj.fn
+    return ret
+}
+/**
+ * @bind 手写
+ * bind 和 call 参数一样
+ * 但是返回的是一个被绑定过后的函数
+ * 所以需要用到闭包
+ */
+// @ts-ignore
+Function.prototype._bind = function(ctx:any,...args:any[]) {
+    const fn = this
+    return function(){
+    // @ts-ignore
+        fn._call(ctx,args)
+    }
+}
+
+/**
+ * 爬楼梯 
+ */
+
+export function climbSteps(n:number){
+    let dp = []
+    dp[0] = 1
+    dp[1] = 1
+    for(let i =2; i<n ;i++){
+        dp[i] = dp[i-2]+dp[i-1]
+    }
+    return dp[n]
+}
+
+/**
+ * 先将小数乘以 n 倍，然后结果再除以 n
+ */
+interface numProps
+{
+    [properkey:string]: number
+}
+function setNumProxy(target:Object,size:number,fn:Function)
+{
+     // 先判断 倍数是否为10的倍数
+    if(size % 10 === 0)
+    {
+        // 拦截器
+        let handler = {
+            get:function(target:numProps,properkey:string )
+            {
+                if(typeof target[properkey] === 'number')
+                {
+                    target[properkey] = target[properkey] * size
+                    return Reflect.get(target,properkey)
+                }
+                else
+                {
+                    throw new TypeError(' 参数必须为数字 ')
+                }
+            }
+        }
+        let proxy = new Proxy(target,handler)
+        let currValue = fn(proxy)
+        return currValue / size
+    }
+    else
+    {
+        throw new Error('倍数 不为 10 的倍数')
+    }
+}
