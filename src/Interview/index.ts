@@ -174,20 +174,21 @@ export function climbSteps(n:number){
 }
 
 /**
+ * @setNumProxy 解决
  * 先将小数乘以 n 倍，然后结果再除以 n
+ * setNumProxy({a:0.1,b:0.2},100,(args)=>{
+ *   return args.a + args.b
+ * })
  */
-interface numProps
-{
-    [properkey:string]: number
-}
-function setNumProxy(target:Object,size:number,fn:Function)
+
+function setNumProxy<K extends Record<string,any>>(target:K,size:number,fn:(args:K)=>number)
 {
      // 先判断 倍数是否为10的倍数
     if(size % 10 === 0)
     {
         // 拦截器
         let handler = {
-            get:function(target:numProps,properkey:string )
+            get:function(target:Record<string,number>,properkey:string )
             {
                 if(typeof target[properkey] === 'number')
                 {
