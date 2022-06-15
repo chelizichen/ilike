@@ -1,6 +1,3 @@
-封校真无趣
-领导真牛逼
-
 ### 使用ClassTransForm 
     手写 https://github.com/typestack/class-transformer 
     chelizichen 5.18

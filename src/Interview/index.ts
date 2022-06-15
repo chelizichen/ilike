@@ -210,3 +210,23 @@ function setNumProxy<K extends Record<string,any>>(target:K,size:number,fn:(args
         throw new Error('倍数 不为 10 的倍数')
     }
 }
+
+
+class Obersver{
+    cache: Record<string,Function>
+    constructor(){
+        this.cache = {}
+    }
+    on(eventName:string,cb:Function){
+        if(this.cache[eventName]) return
+        else{
+            this.cache[eventName] = cb
+        }
+    }
+    emit(eventName:string){
+        if(!this.cache[eventName]) throw new Error('消息不存在')
+        else{
+            this.cache[eventName]()
+        }
+    }
+}

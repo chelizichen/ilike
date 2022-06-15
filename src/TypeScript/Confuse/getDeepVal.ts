@@ -14,7 +14,3 @@ const deepObj = {
 }
 
 const getVal = getDeepVal(deepObj,"c","player")
-
-
-
-console.log()

@@ -137,3 +137,12 @@ const searchMostStr =(str:string):{num:number,mostStr:string}=>{
         mostStr
     }
 }
+
+/**
+ * @param {args:Array<any>}
+ * @returns args
+ * @数组去掉Null和Undefined 值
+ */
+const filterNull = (args:Array<any>) =>{
+    return args.filter(el=>el)
+}
