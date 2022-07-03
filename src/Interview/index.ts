@@ -212,6 +212,11 @@ function setNumProxy<K extends Record<string,any>>(target:K,size:number,fn:(args
 }
 
 
+function IsType(type:string,obj:any){
+    return Object.prototype.toString.call(obj) === `[object ${type}]`
+}
+
+
 class Obersver{
     cache: Record<string,Function>
     constructor(){
@@ -229,4 +234,42 @@ class Obersver{
             this.cache[eventName]()
         }
     }
+    once(eventName:string,cb:Function){
+        const callBack = ()=>{
+            cb()
+            delete this.cache[eventName]
+        }
+        if(this.cache[eventName]) return
+        else{
+            this.cache[eventName] = callBack
+        }
+    }
 }
+
+/**
+ * @状态锁
+ */
+
+//  var status = "ready";
+//  var select = function (callback) {
+//  if (status === "ready") {
+//  status = "pending";
+//  db.select("SQL", function (results) {
+//  status = "ready";
+//  callback(results); });
+//  } };
+
+/**
+ * @引入事件队列
+ */
+//  var proxy = new events.EventEmitter(); 
+//  var status = "ready";
+//  var select = function (callback) {
+//     proxy.once("selected", callback);
+    // if (status === "ready") { 
+    // status = "pending";
+    // db.select("SQL", function (results) {
+    // proxy.emit("selected", results);
+    // status = "ready";
+    // }); 
+//  } };

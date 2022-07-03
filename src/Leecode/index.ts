@@ -146,3 +146,111 @@ const searchMostStr =(str:string):{num:number,mostStr:string}=>{
 const filterNull = (args:Array<any>) =>{
     return args.filter(el=>el)
 }
+
+/**
+ * @mehods reserve
+ */
+
+const reserve = (str:string) =>{
+    for(let i=0;i<str.length/2;i++){
+        let temp = [...str][i];
+        [...str][i] = [...str][str.length-i];
+        [...str][str.length-i] = temp;
+    }
+    return str
+} 
+
+/**
+ * @methods paramsToObject
+ * @params  string 
+ * @return  object Record<string,any>
+ */
+
+function planToObject(str:string){
+    const ret:Record<string,any> = {}
+    const obj = str.split("&")
+    obj.forEach(el=>{
+        const currRet = el.split("=")
+        ret[currRet[0]] = currRet[1]
+    })
+    return ret
+}
+
+/**
+ * @method reverse
+ * @param @return string
+ */
+function reverse(str:string):string{
+    const strArray = [...str]
+    for(let i=0;i<(str.length-1)/2;i++){
+        let temp = strArray[i];
+        strArray[i] = strArray[str.length-i];
+        strArray[str.length-i] = temp;
+    }
+    return strArray.join('')
+} 
+/**
+ * @method reverse1
+ * @param string
+ * @return string
+ */
+function reverse1(str:string):string{
+    if(!str){
+        return ''
+    }
+    if(str.length ===1){
+        return str
+    }
+    let end = str.length - 1;
+    return str[end] + reverse1(str.slice(1,end)) + str[0]
+}
+
+/**
+ * @method factorila
+ * @param num 
+ * @return num
+ */
+function factorila(num:number):number{
+    if(num === 1 || num === 0){
+        return 1
+    }
+    return num * factorila(num-1)
+}
+/**
+ * @method 查找单词
+ */
+function findWords(str:string){
+    const strArr = str.split(' ')
+    const newarr = strArr.filter(el=>{
+        return el.length > 1
+    })
+    return newarr
+}
+
+/**
+ * @method 查询句子中单词最长的
+ */
+
+function findWordsMostLength(str:string){
+    const strArr = str.split(' ')
+    let currMost = strArr[0]
+    strArr.forEach(el=>{
+        if(el.length > currMost.length){
+            currMost = el
+        }
+    })
+    return currMost.length
+}
+function findWordsMostLength1(str:string){
+    return str.split(' ').map(el=>el.length).sort().reverse()[0]
+}
+function findWordsMostLength2(str:string){
+    return Math.max.apply(null,(str.split(' ').map(el=>el.length)))
+}
+
+/**
+ * @method endwith
+ */
+function endWith(target:string,end:string){
+    return [...target].splice(target.length-end.length,target.length-1).join('') === end
+}
